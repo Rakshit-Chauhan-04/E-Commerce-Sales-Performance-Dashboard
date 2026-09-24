@@ -90,9 +90,9 @@ LEFT JOIN reviews_dedup rd        ON oi.order_id = rd.order_id;
 SELECT COUNT(*) AS total_rows FROM master_transactions;
 
 -- Should be 0 if the join didn't fan out unexpectedly
-SELECT order_item_id, COUNT(*)
+SELECT order_id, order_item_id, COUNT(*)
 FROM master_transactions
-GROUP BY order_item_id
+GROUP BY order_id, order_item_id
 HAVING COUNT(*) > 1;
 
 -- Spot-check nulls from the LEFT JOINs
